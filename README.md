@@ -47,9 +47,9 @@ export default defineConfig({
 
 5. Run the `shadcn-ui` init command
 
-   ```js
-   npx shadcn-ui@latest init
-   ```
+```js
+npx shadcn-ui@latest init
+```
 
 6. You can now start adding components to your project.
 
