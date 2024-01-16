@@ -1,30 +1,70 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + Shadcn UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React Typescript Project with Shadcn UI.
 
-Currently, two official plugins are available:
+## Steps to Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+1. Setup the React Project with `npm create vite@latest`.
+2. Install depencies for tailwindcss `npm install -d tailwindcss postcss autoprefixer` and init the tailwindcss `npx tailwindcss init -p`.
+3. Add the following file in tsconfig.json
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  }
 }
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+4. Update the vite.config.ts
+
+```js
+npm i -D @types/node
+```
+
+```js
+import path from "path";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});
+```
+
+5. Run the `shadcn-ui` init command
+
+   ```js
+   npx shadcn-ui@latest init
+   ```
+
+6. You can now start adding components to your project.
+
+```js
+npx shadcn-ui@latest add button
+```
+
+```js
+import { Button } from "@/components/ui/button";
+
+export default function Home() {
+  return (
+    <div>
+      <Button>Click me</Button>
+    </div>
+  );
+}
+```
